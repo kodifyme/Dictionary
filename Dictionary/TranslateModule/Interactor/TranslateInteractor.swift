@@ -8,13 +8,14 @@
 import UIKit
 
 protocol TranslateInteractorInput {
+    var output: TranslateInteractorOutput? { get set }
+}
+
+protocol TranslateInteractorOutput: AnyObject {
     
 }
 
-protocol TranslateInteractorOutput {
-    
-}
-
-final class TranslateInteractor {
+final class TranslateInteractor: TranslateInteractorInput {
+    weak var output: TranslateInteractorOutput?
     
 }

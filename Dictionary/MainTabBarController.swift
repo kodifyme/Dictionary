@@ -9,9 +9,7 @@ import UIKit
 
 final class MainTabBarController: UITabBarController {
     
-    let translateView = TranslateView()
-    let historyView = HistoryView()
-    let settingsView = SettingsView()
+    let translateView = TranslateBuilder.assembly()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +26,7 @@ final class MainTabBarController: UITabBarController {
     
     private func setupTabBar() {
         translateView.tabBarItem = UITabBarItem(title: "Translate", image: UIImage(systemName: "globe"), tag: 0)
-        historyView.tabBarItem = UITabBarItem(title: "History", image: UIImage(systemName: "clock"), tag: 1)
-        settingsView.tabBarItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "gearshape")?.withTintColor(.white), tag: 2)
         
-        viewControllers = [translateView, historyView, settingsView]
+        viewControllers = [translateView]
     }
 }
