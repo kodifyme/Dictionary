@@ -43,6 +43,7 @@ final class LanguagesListView: UIViewController {
     }
 }
 
+//MARK: - UITableViewDataSource
 extension LanguagesListView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         languages.count
@@ -55,6 +56,7 @@ extension LanguagesListView: UITableViewDataSource {
     }
 }
 
+//MARK: - UITableViewDelegate
 extension LanguagesListView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.didSelectLanguage(languages[indexPath.row])
