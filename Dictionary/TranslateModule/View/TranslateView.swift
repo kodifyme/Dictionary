@@ -114,9 +114,11 @@ final class TranslateView: UIViewController, TranslateViewInput {
     }
     
     @objc private func textFieldDidChange(_ textField: UITextField) {
-        if let text = textField.text, !text.isEmpty {
-            output?.didEnterText(text)
+        guard let text = inputTextField.text, !text.isEmpty else {
+            translationLabel.text = ""
+            return
         }
+        output?.didEnterText(text)
     }
     
     @objc private func leftButtonPressed() {
