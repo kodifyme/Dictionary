@@ -12,6 +12,8 @@
 		12474DEA2C1AD636009F7134 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12474DE92C1AD636009F7134 /* Assets.xcassets */; };
 		12474DED2C1AD636009F7134 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 12474DEC2C1AD636009F7134 /* Base */; };
 		126959002C2AFAAA00EC3A96 /* TranslateBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126958FF2C2AFAAA00EC3A96 /* TranslateBuilder.swift */; };
+		127A6F412C315DFB00245123 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127A6F402C315DFB00245123 /* NetworkService.swift */; };
+		127A6F432C319F0600245123 /* TranslateEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127A6F422C319F0600245123 /* TranslateEntity.swift */; };
 		12E8C5662C2053A1001575FE /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E8C5652C2053A1001575FE /* MainTabBarController.swift */; };
 		12E8C56B2C20543D001575FE /* TranslateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E8C56A2C20543D001575FE /* TranslateView.swift */; };
 		12E8C5782C20578C001575FE /* TranslatePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E8C5772C20578C001575FE /* TranslatePresenter.swift */; };
@@ -30,6 +32,8 @@
 		12474DEC2C1AD636009F7134 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		12474DEE2C1AD636009F7134 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		126958FF2C2AFAAA00EC3A96 /* TranslateBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateBuilder.swift; sourceTree = "<group>"; };
+		127A6F402C315DFB00245123 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		127A6F422C319F0600245123 /* TranslateEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateEntity.swift; sourceTree = "<group>"; };
 		12E8C5652C2053A1001575FE /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		12E8C56A2C20543D001575FE /* TranslateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateView.swift; sourceTree = "<group>"; };
 		12E8C5772C20578C001575FE /* TranslatePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatePresenter.swift; sourceTree = "<group>"; };
@@ -72,6 +76,7 @@
 			children = (
 				12474DF52C1AD9A8009F7134 /* Application */,
 				12E8C5672C205402001575FE /* TranslateModule */,
+				127A6F452C31AD5500245123 /* Services */,
 				12E8C5652C2053A1001575FE /* MainTabBarController.swift */,
 				12E8C5972C205EB6001575FE /* Extensions */,
 				12474DF42C1AD955009F7134 /* Resources */,
@@ -106,9 +111,26 @@
 			path = SelectLanguage;
 			sourceTree = "<group>";
 		};
+		127A6F442C319F1100245123 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				127A6F422C319F0600245123 /* TranslateEntity.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		127A6F452C31AD5500245123 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				127A6F402C315DFB00245123 /* NetworkService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		12E8C5672C205402001575FE /* TranslateModule */ = {
 			isa = PBXGroup;
 			children = (
+				127A6F442C319F1100245123 /* Entity */,
 				12E8C5752C20573C001575FE /* Router */,
 				12E8C5742C205731001575FE /* Interactor */,
 				12E8C5732C205724001575FE /* Presenter */,
@@ -241,6 +263,7 @@
 				12E8C5992C205EE6001575FE /* CustomButton.swift in Sources */,
 				12E8C59C2C2060FC001575FE /* UIStackView + Extensions.swift in Sources */,
 				12474DE12C1AD634009F7134 /* AppDelegate.swift in Sources */,
+				127A6F432C319F0600245123 /* TranslateEntity.swift in Sources */,
 				126959002C2AFAAA00EC3A96 /* TranslateBuilder.swift in Sources */,
 				12E8C5782C20578C001575FE /* TranslatePresenter.swift in Sources */,
 				12E8C56B2C20543D001575FE /* TranslateView.swift in Sources */,
@@ -248,6 +271,7 @@
 				12E8C57A2C2057A1001575FE /* TranslateInteractor.swift in Sources */,
 				12E8C57C2C2057A9001575FE /* TranslateRouter.swift in Sources */,
 				12E8C5662C2053A1001575FE /* MainTabBarController.swift in Sources */,
+				127A6F412C315DFB00245123 /* NetworkService.swift in Sources */,
 				12E8C5A02C208EEC001575FE /* LanguagesListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,11 +13,6 @@ struct TranslationRequest: Codable {
     let format: String
     let texts: [String]
     let folderID: String?
-    
-    enum CodingKeys: String, CodingKey {
-        case sourceLanguageCode, targetLanguageCode, format, texts
-        case folderID = "folderId"
-    }
 }
 
 struct TranslationResponse: Codable {

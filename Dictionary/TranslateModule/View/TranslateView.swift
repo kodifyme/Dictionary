@@ -11,22 +11,24 @@ protocol TranslateViewInput {
     var output: TranslateViewOutput? { get set }
     func setSourceLanguage(_ language: String)
     func setTargetLanguage(_ language: String)
+    func displayTranslation(_ translation: String)
 }
 
 protocol TranslateViewOutput {
     func didPressLanguageButton(isSourceLanguage: Bool)
+    func didEnterText(_ text: String)
 }
 
 final class TranslateView: UIViewController, TranslateViewInput {
     
     var output: TranslateViewOutput?
     
-    private lazy var leftButton = CustomButton.createButton(title: "English",
+    private lazy var leftButton = CustomButton.createButton(title: "ru",
                                                             type: .system,
                                                             target: self,
                                                             action: #selector(leftButtonPressed))
     
-    private lazy var rightButton = CustomButton.createButton(title: "Russian",
+    private lazy var rightButton = CustomButton.createButton(title: "en",
                                                              type: .system,
                                                              target: self,
                                                              action: #selector(rightButtonPressed))
@@ -41,7 +43,11 @@ final class TranslateView: UIViewController, TranslateViewInput {
     }()
     
     private lazy var selectLanguageStackView: UIStackView = {
-        UIStackView(arrangedSubviews: [leftButton, betweenLabel, rightButton], axis: .horizontal, spacing: 5)
+        let stackView = UIStackView(arrangedSubviews: [leftButton, betweenLabel, rightButton])
+        stackView.axis = .horizontal
+        stackView.spacing = 5
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
     }()
     
     private let backView: UIView = {
@@ -52,11 +58,12 @@ final class TranslateView: UIViewController, TranslateViewInput {
         return view
     }()
     
-    private let inputTextField: UITextField = {
+    private lazy var inputTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Text or website address"
         textField.contentVerticalAlignment = .top
         textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         return textField
     }()
     
@@ -85,7 +92,6 @@ final class TranslateView: UIViewController, TranslateViewInput {
     
     private func setupView() {
         view.backgroundColor = .systemYellow
-        
         view.addSubview(selectLanguageStackView)
         view.addSubview(backView)
         backView.addSubview(inputTextField)
@@ -95,13 +101,22 @@ final class TranslateView: UIViewController, TranslateViewInput {
         backView.addSubview(translationLabel)
     }
     
-    
     func setSourceLanguage(_ language: String) {
         leftButton.setTitle(language, for: .normal)
     }
     
     func setTargetLanguage(_ language: String) {
         rightButton.setTitle(language, for: .normal)
+    }
+    
+    func displayTranslation(_ translation: String) {
+        translationLabel.text = translation
+    }
+    
+    @objc private func textFieldDidChange(_ textField: UITextField) {
+        if let text = textField.text, !text.isEmpty {
+            output?.didEnterText(text)
+        }
     }
     
     @objc private func leftButtonPressed() {
@@ -141,22 +156,22 @@ private extension TranslateView {
             
             backView.topAnchor.constraint(equalTo: selectLanguageStackView.bottomAnchor, constant: 10),
             backView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            backView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            backView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
             backView.heightAnchor.constraint(equalToConstant: 400),
             
             inputTextField.topAnchor.constraint(equalTo: backView.topAnchor, constant: 15),
-            inputTextField.leadingAnchor.constraint(equalTo: backView.leadingAnchor, constant: 5),
-            inputTextField.centerXAnchor.constraint(equalTo: backView.centerXAnchor),
-            inputTextField.heightAnchor.constraint(equalToConstant: 100),
+            inputTextField.leadingAnchor.constraint(equalTo: backView.leadingAnchor, constant: 10),
+            inputTextField.trailingAnchor.constraint(equalTo: backView.trailingAnchor, constant: -10),
+            inputTextField.heightAnchor.constraint(equalToConstant: 50),
             
             separatorView.topAnchor.constraint(equalTo: inputTextField.bottomAnchor, constant: 15),
-            separatorView.leadingAnchor.constraint(equalTo: inputTextField.leadingAnchor, constant: 10),
-            separatorView.centerXAnchor.constraint(equalTo: inputTextField.centerXAnchor),
-            separatorView.heightAnchor.constraint(equalToConstant: 2),
+            separatorView.leadingAnchor.constraint(equalTo: backView.leadingAnchor, constant: 10),
+            separatorView.trailingAnchor.constraint(equalTo: backView.trailingAnchor, constant: -10),
+            separatorView.heightAnchor.constraint(equalToConstant: 1),
             
             translationLabel.topAnchor.constraint(equalTo: separatorView.bottomAnchor, constant: 20),
-            translationLabel.leadingAnchor.constraint(equalTo: inputTextField.leadingAnchor, constant: 5),
-            translationLabel.centerXAnchor.constraint(equalTo: inputTextField.centerXAnchor)
+            translationLabel.leadingAnchor.constraint(equalTo: backView.leadingAnchor, constant: 10),
+            translationLabel.trailingAnchor.constraint(equalTo: backView.trailingAnchor, constant: -10)
         ])
     }
 }

@@ -11,11 +11,13 @@ class TranslateBuilder {
     
     static func assembly() -> UIViewController {
         let view = TranslateView()
-        let interactor = TranslateInteractor()
+        let networkService = NetworkService.shared
+        let interactor = TranslateInteractor(networkService: networkService)
         let router = TranslateRouter()
         let presenter = TranslatePresenter(view: view, interactor: interactor, router: router)
         
         view.output = presenter
+        interactor.output = presenter
         router.rootViewController = view
         return view
     }

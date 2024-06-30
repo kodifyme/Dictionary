@@ -5,37 +5,40 @@
 //  Created by KOДИ on 30.06.2024.
 //
 
-import UIKit
+import Foundation
+
+struct Constants {
+    static let API_KEY = "AQVN0VAW9GfpClGw1_oxyHbD0DgqTyxTHxvIOS-x"
+    static let baseURLPath = "https://translate.api.cloud.yandex.net/translate/v2/translate"
+    static let folderID = "b1gt5798gsiq4fm29lhc"
+}
 
 class NetworkService {
-    //Идентификатор ключа: ajeha0bf8pv9198r1lvq
     
-//    Ваш секретный ключ:
-//    AQVN0VAW9GfpClGw1_oxyHbD0DgqTyxTHxvIOS-x
-
+    static let shared = NetworkService()
     
-    private let apiKey = "AQVN0VAW9GfpClGw1_oxyHbD0DgqTyxTHxvIOS-x"
-    private let baseURL = "https://translate.api.cloud.yandex.net/translate/v2/translate"
+    private init() {}
+    
+    private lazy var mainURL: URL? = {
+        URL(string: Constants.baseURLPath)
+    }()
     
     func fetchTranslation(for text: String, from sourceLanguage: String?, to targetLanguage: String, completion: @escaping (Result<String, Error>) -> Void) {
+        
+        guard let mainURL else { return }
         
         let translationRequest = TranslationRequest(
             sourceLanguageCode: sourceLanguage,
             targetLanguageCode: targetLanguage,
             format: "PLAIN_TEXT",
             texts: [text],
-            folderID: "b1gt5798gsiq4fm29lhc"
+            folderID: Constants.folderID
         )
         
-        guard let url = URL(string: baseURL) else {
-            completion(.failure(NSError(domain: "Invalid URL", code: -1, userInfo: nil)))
-            return
-        }
-        
-        var request = URLRequest(url: url)
+        var request = URLRequest(url: mainURL)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Api-Key \(apiKey)", forHTTPHeaderField: "Authorization")
+        request.addValue("API-KEY \(Constants.API_KEY)", forHTTPHeaderField: "Authorization")
 
         do {
             let jsonData = try JSONEncoder().encode(translationRequest)
@@ -58,8 +61,8 @@ class NetworkService {
             
             if let httpResponse = response as? HTTPURLResponse {
                 print("HTTP Status Code: \(httpResponse.statusCode)")
-                if httpResponse.statusCode == 403 {
-                    completion(.failure(NSError(domain: "Permission denied", code: 403, userInfo: nil)))
+                if httpResponse.statusCode == 401 {
+                    completion(.failure(NSError(domain: "Unauthorized", code: 401, userInfo: nil)))
                     return
                 }
             }
@@ -69,18 +72,18 @@ class NetworkService {
             
             do {
                 let translationResponse = try JSONDecoder().decode(TranslationResponse.self, from: data)
-                if let translation = translationResponse.translations.first?.text {
-                    completion(.success(translation))
-                } else {
-                    completion(.failure(NSError(domain: "Invalid response format", code: -1, userInfo: nil)))
+                DispatchQueue.main.async {
+                    if let translation = translationResponse.translations.first?.text {
+                        completion(.success(translation))
+                    } else {
+                        completion(.failure(NSError(domain: "Invalid response format", code: -1, userInfo: nil)))
+                    }
                 }
             } catch {
                 print("Decoding error: \(error)")
                 completion(.failure(error))
             }
         }
-        
         task.resume()
     }
 }
-
