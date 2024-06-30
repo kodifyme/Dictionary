@@ -23,8 +23,14 @@ final class TranslatePresenter: TranslatePresenterInput {
     private var interactor: TranslateInteractorInput
     private var router: TranslateRouterInput
     private var isSourceLanguageSelection = true
-    private var sourceLanguage = "ru"
-    private var targetLanguage = "en"
+    private var sourceLanguage: Language = Language(name: "Russian", code: "ru")
+    private var targetLanguage: Language = Language(name: "English", code: "en")
+    
+    private let languages = [
+        Language(name: "Russian", code: "ru"),
+        Language(name: "English", code: "en"),
+        Language(name: "Spanish", code: "es")
+    ]
     
     init(view: TranslateViewInput, interactor: TranslateInteractorInput, router: TranslateRouterInput) {
         self.view = view
@@ -41,19 +47,21 @@ extension TranslatePresenter: TranslateViewOutput {
     }
     
     func didEnterText(_ text: String) {
-        interactor.fetchTranslation(for: text, from: sourceLanguage, to: targetLanguage)
+        interactor.fetchTranslation(for: text, from: sourceLanguage.code, to: targetLanguage.code)
     }
 }
 
 //MARK: - LanguageSelectionDelegate
 extension TranslatePresenter: LanguageSelectionDelegate {
-    func didSelectLanguage(_ language: String) {
-        if isSourceLanguageSelection {
-            sourceLanguage = language
-            view.setSourceLanguage(language)
-        } else {
-            targetLanguage = language
-            view.setTargetLanguage(language)
+    func didSelectLanguage(_ languageName: String) {
+        if let selectedLanguage = languages.first(where: { $0.name == languageName }) {
+            if isSourceLanguageSelection {
+                sourceLanguage = selectedLanguage
+                view.setSourceLanguage(selectedLanguage.name)
+            } else {
+                targetLanguage = selectedLanguage
+                view.setTargetLanguage(selectedLanguage.name)
+            }
         }
     }
 }

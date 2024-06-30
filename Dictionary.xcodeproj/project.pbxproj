@@ -131,8 +131,8 @@
 			isa = PBXGroup;
 			children = (
 				127A6F442C319F1100245123 /* Entity */,
-				12E8C5752C20573C001575FE /* Router */,
 				12E8C5742C205731001575FE /* Interactor */,
+				12E8C5752C20573C001575FE /* Router */,
 				12E8C5732C205724001575FE /* Presenter */,
 				12E8C5702C20546C001575FE /* View */,
 				126958FF2C2AFAAA00EC3A96 /* TranslateBuilder.swift */,

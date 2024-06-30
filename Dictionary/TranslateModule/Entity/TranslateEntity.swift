@@ -22,3 +22,8 @@ struct TranslationResponse: Codable {
 struct Translation: Codable {
     let text: String
 }
+
+struct Language {
+    let name: String
+    let code: String
+}

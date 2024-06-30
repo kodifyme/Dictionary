@@ -23,12 +23,12 @@ final class TranslateView: UIViewController, TranslateViewInput {
     
     var output: TranslateViewOutput?
     
-    private lazy var leftButton = CustomButton.createButton(title: "ru",
+    private lazy var leftButton = CustomButton.createButton(title: "Russian",
                                                             type: .system,
                                                             target: self,
                                                             action: #selector(leftButtonPressed))
     
-    private lazy var rightButton = CustomButton.createButton(title: "en",
+    private lazy var rightButton = CustomButton.createButton(title: "English",
                                                              type: .system,
                                                              target: self,
                                                              action: #selector(rightButtonPressed))
