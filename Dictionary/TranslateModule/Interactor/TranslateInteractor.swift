@@ -18,4 +18,6 @@ protocol TranslateInteractorOutput: AnyObject {
 final class TranslateInteractor: TranslateInteractorInput {
     weak var output: TranslateInteractorOutput?
     
+    
+    
 }

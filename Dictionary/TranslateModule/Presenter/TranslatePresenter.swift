@@ -8,14 +8,14 @@
 import UIKit
 
 protocol TranslatePresenterInput {
-    var output: TranslatePresenterOutput { get set }
+    var output: TranslatePresenterOutput? { get set }
 }
 
 protocol TranslatePresenterOutput: AnyObject {
     
 }
 
-final class TranslatePresenter {
+final class TranslatePresenter: TranslatePresenterInput {
     weak var output: TranslatePresenterOutput?
     
     private var view: TranslateViewInput
