@@ -29,7 +29,7 @@ final class TranslateInteractor: TranslateInteractorInput {
         networkService.fetchTranslation(for: text, from: sourceLanguage, to: targetLanguage) { result in
             switch result {
             case .success(let translation):
-                self.output?.didFetchTranslation(translation)
+                self.output?.didFetchTranslation(translation.text)
             case .failure(let error):
                 self.output?.didFailToFetchTranslation(error: error)
             }

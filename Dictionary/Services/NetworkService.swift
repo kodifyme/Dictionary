@@ -11,6 +11,7 @@ struct Constants {
     static let API_KEY = "AQVN0VAW9GfpClGw1_oxyHbD0DgqTyxTHxvIOS-x"
     static let baseURLPath = "https://translate.api.cloud.yandex.net/translate/v2/translate"
     static let folderID = "b1gt5798gsiq4fm29lhc"
+    static let format = "PLAIN_TEXT"
 }
 
 class NetworkService {
@@ -23,22 +24,24 @@ class NetworkService {
         URL(string: Constants.baseURLPath)
     }()
     
-    func fetchTranslation(for text: String, from sourceLanguage: String?, to targetLanguage: String, completion: @escaping (Result<String, Error>) -> Void) {
+    func fetchTranslation(for text: String, from sourceLanguage: String?, to targetLanguage: String, completion: @escaping (Result<Translation, Error>) -> Void) {
         
         guard let mainURL else { return }
         
         let translationRequest = TranslationRequest(
             sourceLanguageCode: sourceLanguage,
             targetLanguageCode: targetLanguage,
-            format: "PLAIN_TEXT",
+            format: Constants.format,
             texts: [text],
             folderID: Constants.folderID
         )
         
         var request = URLRequest(url: mainURL)
         request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("API-KEY \(Constants.API_KEY)", forHTTPHeaderField: "Authorization")
+        request.allHTTPHeaderFields = [
+            "Content-Type": "application/json",
+            "Authorization": "API-KEY \(Constants.API_KEY)"
+        ]
 
         do {
             let jsonData = try JSONEncoder().encode(translationRequest)
@@ -48,23 +51,9 @@ class NetworkService {
             return
         }
         
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            if let error = error {
-                completion(.failure(error))
-                return
-            }
-            
-            guard let data = data else {
-                completion(.failure(NSError(domain: "No data", code: -1, userInfo: nil)))
-                return
-            }
-            
-            if let httpResponse = response as? HTTPURLResponse {
-                print("HTTP Status Code: \(httpResponse.statusCode)")
-                if httpResponse.statusCode == 401 {
-                    completion(.failure(NSError(domain: "Unauthorized", code: 401, userInfo: nil)))
-                    return
-                }
+        let task = URLSession.shared.dataTask(with: request) { data, _, error in
+            guard let data, error == nil else {
+                return completion(.failure(error!))
             }
             
             let responseDataString = String(data: data, encoding: .utf8)
@@ -73,10 +62,10 @@ class NetworkService {
             do {
                 let translationResponse = try JSONDecoder().decode(TranslationResponse.self, from: data)
                 DispatchQueue.main.async {
-                    if let translation = translationResponse.translations.first?.text {
+                    if let translation = translationResponse.translations.first {
                         completion(.success(translation))
                     } else {
-                        completion(.failure(NSError(domain: "Invalid response format", code: -1, userInfo: nil)))
+                        completion(.failure(error!))
                     }
                 }
             } catch {
