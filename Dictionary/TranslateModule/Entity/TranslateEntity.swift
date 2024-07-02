@@ -27,3 +27,9 @@ struct Language {
     let name: String
     let code: String
 }
+
+let languages = [
+    Language(name: "Russian", code: "ru"),
+    Language(name: "English", code: "en"),
+    Language(name: "Spanish", code: "es")
+]

@@ -7,16 +7,29 @@
 
 import UIKit
 
+protocol TranslateRouterOutput {
+    func didSelectLanguage(_ language: String)
+}
+
 protocol TranslateRouterInput {
-    func openLanguageSelectionScreen(delegate: LanguageSelectionDelegate)
+    var rootViewController: UIViewController? { get set }
+    var presenter: TranslatePresenter? { get set }
+    func openLanguageSelectionScreen()
+    func didSelectLanguage(_ language: String)
 }
 
 final class TranslateRouter: TranslateRouterInput {
-    weak var rootViewController: UIViewController?
     
-    func openLanguageSelectionScreen(delegate: LanguageSelectionDelegate) {
+    weak var rootViewController: UIViewController?
+    weak var presenter: TranslatePresenter?
+    
+    func openLanguageSelectionScreen() {
         let languagesVC = LanguagesListView()
-        languagesVC.delegate = delegate
+        languagesVC.router = self
         rootViewController?.present(languagesVC, animated: true)
+    }
+    
+    func didSelectLanguage(_ language: String) {
+        presenter?.didSelectLanguage(language)
     }
 }

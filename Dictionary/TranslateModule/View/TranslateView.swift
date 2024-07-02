@@ -17,18 +17,19 @@ protocol TranslateViewInput {
 protocol TranslateViewOutput {
     func didPressLanguageButton(isSourceLanguage: Bool)
     func didEnterText(_ text: String)
+    func didLoad()
 }
 
 final class TranslateView: UIViewController, TranslateViewInput {
     
     var output: TranslateViewOutput?
     
-    private lazy var leftButton = CustomButton.createButton(title: "Russian",
+    private lazy var leftButton = CustomButton.createButton(title: "",
                                                             type: .system,
                                                             target: self,
                                                             action: #selector(leftButtonPressed))
     
-    private lazy var rightButton = CustomButton.createButton(title: "English",
+    private lazy var rightButton = CustomButton.createButton(title: "",
                                                              type: .system,
                                                              target: self,
                                                              action: #selector(rightButtonPressed))
@@ -64,6 +65,7 @@ final class TranslateView: UIViewController, TranslateViewInput {
         textField.contentVerticalAlignment = .top
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        textField.delegate = self
         return textField
     }()
     
@@ -85,6 +87,8 @@ final class TranslateView: UIViewController, TranslateViewInput {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        output?.didLoad()
+        
         setupView()
         setupKeyboardDismissalGestures()
         setupConstraints()
@@ -93,24 +97,11 @@ final class TranslateView: UIViewController, TranslateViewInput {
     private func setupView() {
         view.backgroundColor = .systemYellow
         view.addSubview(selectLanguageStackView)
+        
         view.addSubview(backView)
         backView.addSubview(inputTextField)
-        inputTextField.delegate = self
-        
         backView.addSubview(separatorView)
         backView.addSubview(translationLabel)
-    }
-    
-    func setSourceLanguage(_ language: String) {
-        leftButton.setTitle(language, for: .normal)
-    }
-    
-    func setTargetLanguage(_ language: String) {
-        rightButton.setTitle(language, for: .normal)
-    }
-    
-    func displayTranslation(_ translation: String) {
-        translationLabel.text = translation
     }
     
     @objc private func textFieldDidChange(_ textField: UITextField) {
@@ -127,6 +118,21 @@ final class TranslateView: UIViewController, TranslateViewInput {
     
     @objc private func rightButtonPressed() {
         output?.didPressLanguageButton(isSourceLanguage: false)
+    }
+}
+
+extension TranslateView {
+    
+    func setSourceLanguage(_ language: String) {
+        leftButton.setTitle(language, for: .normal)
+    }
+    
+    func setTargetLanguage(_ language: String) {
+        rightButton.setTitle(language, for: .normal)
+    }
+    
+    func displayTranslation(_ translation: String) {
+        translationLabel.text = translation
     }
 }
 

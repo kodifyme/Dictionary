@@ -9,24 +9,37 @@ import UIKit
 
 protocol TranslateInteractorInput {
     var output: TranslateInteractorOutput? { get set }
-    func fetchTranslation(for text: String, from sourceLanguage: String?, to targetLanguage: String)
+    var isSourceLanguage: Bool { get set }
+    func fetchTranslation(for text: String)
+    func viewDidLoad()
+    func changeLanguageTo(_ languageName: String)
 }
 
 protocol TranslateInteractorOutput: AnyObject {
     func didFetchTranslation(_ translation: String)
     func didFailToFetchTranslation(error: Error)
+    func setLanguages(_ source: String, target: String)
 }
 
 final class TranslateInteractor: TranslateInteractorInput {
+    
     weak var output: TranslateInteractorOutput?
-    private let networkService: NetworkService
+    private let networkService = NetworkService.shared
     
-    init(networkService: NetworkService) {
-        self.networkService = networkService
+    var isSourceLanguage = true
+    
+    private var sourceLanguage: Language = languages[0]
+    private var targetLanguage: Language = languages[1]
+    
+    func setLanguages() {
+        output?.setLanguages(sourceLanguage.name, target: targetLanguage.name)
     }
-    
-    func fetchTranslation(for text: String, from sourceLanguage: String?, to targetLanguage: String) {
-        networkService.fetchTranslation(for: text, from: sourceLanguage, to: targetLanguage) { result in
+}
+
+//MARK: - TranslateInteractorInput
+extension TranslateInteractor {
+    func fetchTranslation(for text: String) {
+        networkService.fetchTranslation(for: text, from: sourceLanguage.code, to: targetLanguage.code) { result in
             switch result {
             case .success(let translation):
                 self.output?.didFetchTranslation(translation.text)
@@ -34,5 +47,19 @@ final class TranslateInteractor: TranslateInteractorInput {
                 self.output?.didFailToFetchTranslation(error: error)
             }
         }
+    }
+    
+    func viewDidLoad() {
+        setLanguages()
+    }
+    
+    func changeLanguageTo(_ languageName: String) {
+        guard let selectedLanguage = languages.first(where: { $0.name ==  languageName})
+        else { return }
+        
+        if isSourceLanguage { sourceLanguage = selectedLanguage }
+        else { targetLanguage = selectedLanguage }
+        
+        setLanguages()
     }
 }

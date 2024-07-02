@@ -34,6 +34,7 @@
 		126958FF2C2AFAAA00EC3A96 /* TranslateBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateBuilder.swift; sourceTree = "<group>"; };
 		127A6F402C315DFB00245123 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		127A6F422C319F0600245123 /* TranslateEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateEntity.swift; sourceTree = "<group>"; };
+		12AF2F9B2C32F611009760A2 /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		12E8C5652C2053A1001575FE /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		12E8C56A2C20543D001575FE /* TranslateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateView.swift; sourceTree = "<group>"; };
 		12E8C5772C20578C001575FE /* TranslatePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslatePresenter.swift; sourceTree = "<group>"; };
@@ -74,6 +75,7 @@
 		12474DDF2C1AD634009F7134 /* Dictionary */ = {
 			isa = PBXGroup;
 			children = (
+				12AF2F9B2C32F611009760A2 /* TODO.md */,
 				12474DF52C1AD9A8009F7134 /* Application */,
 				12E8C5672C205402001575FE /* TranslateModule */,
 				127A6F452C31AD5500245123 /* Services */,

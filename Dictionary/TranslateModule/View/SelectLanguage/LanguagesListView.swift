@@ -7,15 +7,10 @@
 
 import UIKit
 
-protocol LanguageSelectionDelegate: AnyObject {
-    func didSelectLanguage(_ language: String)
-}
-
 final class LanguagesListView: UIViewController {
     
     let identifier = "cell"
-    var languages = ["English", "Russian", "Spanish"]
-    weak var delegate: LanguageSelectionDelegate?
+    var router: TranslateRouterInput?
     
     private lazy var languagesTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .insetGrouped)
@@ -51,7 +46,7 @@ extension LanguagesListView: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
-        cell.textLabel?.text = languages[indexPath.row]
+        cell.textLabel?.text = languages[indexPath.row].name
         return cell
     }
 }
@@ -59,7 +54,7 @@ extension LanguagesListView: UITableViewDataSource {
 //MARK: - UITableViewDelegate
 extension LanguagesListView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.didSelectLanguage(languages[indexPath.row])
+        router?.didSelectLanguage(languages[indexPath.row].name)
         dismiss(animated: true)
     }
 }
