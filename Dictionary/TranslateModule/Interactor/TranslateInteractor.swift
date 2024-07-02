@@ -12,7 +12,7 @@ protocol TranslateInteractorInput {
     var isSourceLanguage: Bool { get set }
     func fetchTranslation(for text: String)
     func viewDidLoad()
-    func changeLanguageTo(_ languageName: String)
+    func changeLanguageTo(_ languageName: Language)
 }
 
 protocol TranslateInteractorOutput: AnyObject {
@@ -53,8 +53,8 @@ extension TranslateInteractor {
         setLanguages()
     }
     
-    func changeLanguageTo(_ languageName: String) {
-        guard let selectedLanguage = languages.first(where: { $0.name ==  languageName})
+    func changeLanguageTo(_ languageName: Language) {
+        guard let selectedLanguage = languages.first(where: { $0.name ==  languageName.name})
         else { return }
         
         if isSourceLanguage { sourceLanguage = selectedLanguage }

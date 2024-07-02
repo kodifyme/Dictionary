@@ -8,14 +8,14 @@
 import UIKit
 
 protocol TranslateRouterOutput {
-    func didSelectLanguage(_ language: String)
+    func didSelectLanguage(_ language: Language)
 }
 
 protocol TranslateRouterInput {
     var rootViewController: UIViewController? { get set }
     var presenter: TranslatePresenter? { get set }
     func openLanguageSelectionScreen()
-    func didSelectLanguage(_ language: String)
+    func didSelectLanguage(_ language: Language)
 }
 
 final class TranslateRouter: TranslateRouterInput {
@@ -29,7 +29,7 @@ final class TranslateRouter: TranslateRouterInput {
         rootViewController?.present(languagesVC, animated: true)
     }
     
-    func didSelectLanguage(_ language: String) {
+    func didSelectLanguage(_ language: Language) {
         presenter?.didSelectLanguage(language)
     }
 }

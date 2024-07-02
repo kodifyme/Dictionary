@@ -50,7 +50,7 @@ extension TranslatePresenter: TranslateViewOutput {
 
 //MARK: - LanguageSelectionDelegate
 extension TranslatePresenter: TranslateRouterOutput {
-    func didSelectLanguage(_ languageName: String) {
+    func didSelectLanguage(_ languageName: Language) {
         interactor.changeLanguageTo(languageName)
     }
 }

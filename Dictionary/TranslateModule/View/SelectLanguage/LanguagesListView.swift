@@ -54,7 +54,7 @@ extension LanguagesListView: UITableViewDataSource {
 //MARK: - UITableViewDelegate
 extension LanguagesListView: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        router?.didSelectLanguage(languages[indexPath.row].name)
+        router?.didSelectLanguage(languages[indexPath.row])
         dismiss(animated: true)
     }
 }
