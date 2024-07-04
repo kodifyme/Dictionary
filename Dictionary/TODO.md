@@ -1,13 +1,12 @@
 # TranslateBuilder-> presenter strong links instead of values (int, vi, rou) #18
 
-# bugs:
-
 # check async/await + actors
 # 3 особенности(проблемы) UserDefaults, когда(почему) плох (подводит)
 
 # DONE: 
 # LanguagesListView-> send Language object (not String) #57
 
+# bugs:
 # fast (wrong) translation while fast typing
 
 # while changing language

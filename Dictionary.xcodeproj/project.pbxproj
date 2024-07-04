@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1239B7482C3704D00055031B /* HistoryBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1239B7472C3704D00055031B /* HistoryBuilder.swift */; };
+		1239B74A2C3705120055031B /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1239B7492C3705120055031B /* HistoryView.swift */; };
 		12474DE12C1AD634009F7134 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12474DE02C1AD634009F7134 /* AppDelegate.swift */; };
 		12474DE32C1AD634009F7134 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12474DE22C1AD634009F7134 /* SceneDelegate.swift */; };
 		12474DEA2C1AD636009F7134 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12474DE92C1AD636009F7134 /* Assets.xcassets */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1239B7472C3704D00055031B /* HistoryBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryBuilder.swift; sourceTree = "<group>"; };
+		1239B7492C3705120055031B /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 		12474DDD2C1AD634009F7134 /* Dictionary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Dictionary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		12474DE02C1AD634009F7134 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		12474DE22C1AD634009F7134 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +60,55 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1239B73F2C3704340055031B /* HistoryModule */ = {
+			isa = PBXGroup;
+			children = (
+				1239B7452C37047C0055031B /* Router */,
+				1239B7462C3704920055031B /* Entity */,
+				1239B7432C37046E0055031B /* Presenter */,
+				1239B7422C3704640055031B /* Interactor */,
+				1239B7412C37045F0055031B /* View */,
+				1239B7472C3704D00055031B /* HistoryBuilder.swift */,
+			);
+			path = HistoryModule;
+			sourceTree = "<group>";
+		};
+		1239B7412C37045F0055031B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1239B7492C3705120055031B /* HistoryView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1239B7422C3704640055031B /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		1239B7432C37046E0055031B /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		1239B7452C37047C0055031B /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		1239B7462C3704920055031B /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
 		12474DD42C1AD634009F7134 = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +131,7 @@
 				12AF2F9B2C32F611009760A2 /* TODO.md */,
 				12474DF52C1AD9A8009F7134 /* Application */,
 				12E8C5672C205402001575FE /* TranslateModule */,
+				1239B73F2C3704340055031B /* HistoryModule */,
 				127A6F452C31AD5500245123 /* Services */,
 				12E8C5652C2053A1001575FE /* MainTabBarController.swift */,
 				12E8C5972C205EB6001575FE /* Extensions */,
@@ -132,10 +186,10 @@
 		12E8C5672C205402001575FE /* TranslateModule */ = {
 			isa = PBXGroup;
 			children = (
-				127A6F442C319F1100245123 /* Entity */,
-				12E8C5742C205731001575FE /* Interactor */,
 				12E8C5752C20573C001575FE /* Router */,
+				127A6F442C319F1100245123 /* Entity */,
 				12E8C5732C205724001575FE /* Presenter */,
+				12E8C5742C205731001575FE /* Interactor */,
 				12E8C5702C20546C001575FE /* View */,
 				126958FF2C2AFAAA00EC3A96 /* TranslateBuilder.swift */,
 			);
@@ -262,12 +316,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1239B7482C3704D00055031B /* HistoryBuilder.swift in Sources */,
 				12E8C5992C205EE6001575FE /* CustomButton.swift in Sources */,
 				12E8C59C2C2060FC001575FE /* UIStackView + Extensions.swift in Sources */,
 				12474DE12C1AD634009F7134 /* AppDelegate.swift in Sources */,
 				127A6F432C319F0600245123 /* TranslateEntity.swift in Sources */,
 				126959002C2AFAAA00EC3A96 /* TranslateBuilder.swift in Sources */,
 				12E8C5782C20578C001575FE /* TranslatePresenter.swift in Sources */,
+				1239B74A2C3705120055031B /* HistoryView.swift in Sources */,
 				12E8C56B2C20543D001575FE /* TranslateView.swift in Sources */,
 				12474DE32C1AD634009F7134 /* SceneDelegate.swift in Sources */,
 				12E8C57A2C2057A1001575FE /* TranslateInteractor.swift in Sources */,
