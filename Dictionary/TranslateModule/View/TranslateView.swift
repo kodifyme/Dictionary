@@ -24,6 +24,9 @@ final class TranslateView: UIViewController, TranslateViewInput {
     
     var output: TranslateViewOutput?
     
+    private var typingTimer: Timer?
+    private let typingDelay: TimeInterval = 1
+    
     private lazy var leftButton = CustomButton.createButton(title: "",
                                                             type: .system,
                                                             target: self,
@@ -105,11 +108,14 @@ final class TranslateView: UIViewController, TranslateViewInput {
     }
     
     @objc private func textFieldDidChange(_ textField: UITextField) {
-        guard let text = inputTextField.text, !text.isEmpty else {
+        typingTimer?.invalidate()
+        if let text = textField.text, !text.isEmpty {
+            typingTimer = Timer.scheduledTimer(withTimeInterval: typingDelay, repeats: false) { [weak self] _ in
+                self?.output?.didEnterText(text)
+            }
+        } else {
             translationLabel.text = ""
-            return
         }
-        output?.didEnterText(text)
     }
     
     @objc private func leftButtonPressed() {
@@ -121,6 +127,7 @@ final class TranslateView: UIViewController, TranslateViewInput {
     }
 }
 
+//MARK: - TranslateViewInput
 extension TranslateView {
     
     func setSourceLanguage(_ language: String) {
