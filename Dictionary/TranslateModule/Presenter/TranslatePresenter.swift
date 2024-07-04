@@ -46,6 +46,12 @@ extension TranslatePresenter: TranslateViewOutput {
     func didLoad() {
         interactor.viewDidLoad()
     }
+    
+    func didPressReverseButton() {
+        if let currentText = view.getCurrentText() {
+            interactor.reverseLanguages(with: currentText)
+        }
+    }
 }
 
 //MARK: - LanguageSelectionDelegate
@@ -72,5 +78,9 @@ extension TranslatePresenter: TranslateInteractorOutput {
     func setLanguages(_ source: String, target: String) {
         view.setSourceLanguage(source)
         view.setTargetLanguage(target)
+    }
+    
+    func setCurrentText(_ text: String) {
+        view.setCurrentText(text)
     }
 }

@@ -13,12 +13,14 @@ protocol TranslateInteractorInput {
     func fetchTranslation(for text: String)
     func viewDidLoad()
     func changeLanguageTo(_ languageName: Language)
+    func reverseLanguages(with text: String)
 }
 
 protocol TranslateInteractorOutput: AnyObject {
     func didFetchTranslation(_ translation: String)
     func didFailToFetchTranslation(error: Error)
     func setLanguages(_ source: String, target: String)
+    func setCurrentText(_ text: String)
 }
 
 final class TranslateInteractor: TranslateInteractorInput {
@@ -61,5 +63,16 @@ extension TranslateInteractor {
         else { targetLanguage = selectedLanguage }
         
         setLanguages()
+    }
+    
+    func reverseLanguages(with text: String) {
+        let tempLanguage = sourceLanguage
+        sourceLanguage = targetLanguage
+        targetLanguage = tempLanguage
+        
+        setLanguages()
+        
+        output?.setCurrentText(text)
+        fetchTranslation(for: text)
     }
 }

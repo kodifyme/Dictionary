@@ -2,10 +2,6 @@
 
 # bugs:
 
-# switch
-# via reverse button
-# when (source = target)
-
 # check async/await + actors
 # 3 особенности(проблемы) UserDefaults, когда(почему) плох (подводит)
 
@@ -16,6 +12,10 @@
 
 # while changing language
 # not translate
+
+# switch
+# via reverse button
+# when (source = target)
 
 
 

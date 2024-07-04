@@ -13,12 +13,14 @@ protocol TranslateViewInput {
     func setTargetLanguage(_ language: String)
     func displayTranslation(_ translation: String)
     func getCurrentText() -> String?
+    func setCurrentText(_ text: String)
 }
 
 protocol TranslateViewOutput {
     func didPressLanguageButton(isSourceLanguage: Bool)
     func didEnterText(_ text: String)
     func didLoad()
+    func didPressReverseButton()
 }
 
 final class TranslateView: UIViewController, TranslateViewInput {
@@ -31,24 +33,21 @@ final class TranslateView: UIViewController, TranslateViewInput {
     private lazy var leftButton = CustomButton.createButton(title: "",
                                                             type: .system,
                                                             target: self,
-                                                            action: #selector(leftButtonPressed))
+                                                            action:
+                                                            #selector(leftButtonPressed))
     
     private lazy var rightButton = CustomButton.createButton(title: "",
                                                              type: .system,
                                                              target: self,
                                                              action: #selector(rightButtonPressed))
     
-    private let betweenLabel: UILabel = {
-        let label = UILabel()
-        label.text = "↔"
-        label.textColor = .black
-        label.font = .systemFont(ofSize: 20)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    private lazy var reverseButton = CustomButton.createButton(title: "↔️",
+                                                               type: .system,
+                                                               target: self,
+                                                               action: #selector(reverseButtonPressed))
     
     private lazy var selectLanguageStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [leftButton, betweenLabel, rightButton])
+        let stackView = UIStackView(arrangedSubviews: [leftButton, reverseButton, rightButton])
         stackView.axis = .horizontal
         stackView.spacing = 5
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -112,6 +111,10 @@ final class TranslateView: UIViewController, TranslateViewInput {
         inputTextField.text
     }
     
+    func setCurrentText(_ text: String) {
+        inputTextField.text = translationLabel.text
+    }
+    
     @objc private func textFieldDidChange(_ textField: UITextField) {
         typingTimer?.invalidate()
         if let text = textField.text, !text.isEmpty {
@@ -129,6 +132,10 @@ final class TranslateView: UIViewController, TranslateViewInput {
     
     @objc private func rightButtonPressed() {
         output?.didPressLanguageButton(isSourceLanguage: false)
+    }
+    
+    @objc private func reverseButtonPressed() {
+        output?.didPressReverseButton()
     }
 }
 
