@@ -8,13 +8,13 @@
 import UIKit
 
 /*protocol TranslatePresenterInput {
-    var output: TranslatePresenterOutput? { get set }
-}
-
-protocol TranslatePresenterOutput: AnyObject {
-    func didFetchTranslation(_ translation: String)
-    func didFailToFetchTranslation(error: Error)
-}*/
+ var output: TranslatePresenterOutput? { get set }
+ }
+ 
+ protocol TranslatePresenterOutput: AnyObject {
+ func didFetchTranslation(_ translation: String)
+ func didFailToFetchTranslation(error: Error)
+ }*/
 
 //weak var output: TranslatePresenterOutput?
 
@@ -52,6 +52,9 @@ extension TranslatePresenter: TranslateViewOutput {
 extension TranslatePresenter: TranslateRouterOutput {
     func didSelectLanguage(_ languageName: Language) {
         interactor.changeLanguageTo(languageName)
+        if let currentText = view.getCurrentText() {
+            interactor.fetchTranslation(for: currentText)
+        }
     }
 }
 

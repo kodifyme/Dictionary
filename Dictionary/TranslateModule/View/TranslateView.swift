@@ -12,6 +12,7 @@ protocol TranslateViewInput {
     func setSourceLanguage(_ language: String)
     func setTargetLanguage(_ language: String)
     func displayTranslation(_ translation: String)
+    func getCurrentText() -> String?
 }
 
 protocol TranslateViewOutput {
@@ -105,6 +106,10 @@ final class TranslateView: UIViewController, TranslateViewInput {
         backView.addSubview(inputTextField)
         backView.addSubview(separatorView)
         backView.addSubview(translationLabel)
+    }
+    
+    func getCurrentText() -> String? {
+        inputTextField.text
     }
     
     @objc private func textFieldDidChange(_ textField: UITextField) {

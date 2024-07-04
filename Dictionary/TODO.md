@@ -1,10 +1,6 @@
 # TranslateBuilder-> presenter strong links instead of values (int, vi, rou) #18
 
 # bugs:
-# fast (wrong) translation while fast typing
-
-# while changing language
-# not translate
 
 # switch
 # via reverse button
@@ -16,6 +12,10 @@
 # DONE: 
 # LanguagesListView-> send Language object (not String) #57
 
+# fast (wrong) translation while fast typing
+
+# while changing language
+# not translate
 
 
 
