@@ -13,6 +13,8 @@
 		12474DE32C1AD634009F7134 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12474DE22C1AD634009F7134 /* SceneDelegate.swift */; };
 		12474DEA2C1AD636009F7134 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 12474DE92C1AD636009F7134 /* Assets.xcassets */; };
 		12474DED2C1AD636009F7134 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 12474DEC2C1AD636009F7134 /* Base */; };
+		12589FE12C3890430003027D /* HistoryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12589FE02C3890430003027D /* HistoryInteractor.swift */; };
+		12589FE32C38924A0003027D /* HistoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12589FE22C38924A0003027D /* HistoryPresenter.swift */; };
 		126959002C2AFAAA00EC3A96 /* TranslateBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126958FF2C2AFAAA00EC3A96 /* TranslateBuilder.swift */; };
 		127A6F412C315DFB00245123 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127A6F402C315DFB00245123 /* NetworkService.swift */; };
 		127A6F432C319F0600245123 /* TranslateEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127A6F422C319F0600245123 /* TranslateEntity.swift */; };
@@ -35,6 +37,8 @@
 		12474DE92C1AD636009F7134 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		12474DEC2C1AD636009F7134 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		12474DEE2C1AD636009F7134 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		12589FE02C3890430003027D /* HistoryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryInteractor.swift; sourceTree = "<group>"; };
+		12589FE22C38924A0003027D /* HistoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryPresenter.swift; sourceTree = "<group>"; };
 		126958FF2C2AFAAA00EC3A96 /* TranslateBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateBuilder.swift; sourceTree = "<group>"; };
 		127A6F402C315DFB00245123 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		127A6F422C319F0600245123 /* TranslateEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateEntity.swift; sourceTree = "<group>"; };
@@ -84,6 +88,7 @@
 		1239B7422C3704640055031B /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
+				12589FE02C3890430003027D /* HistoryInteractor.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -91,6 +96,7 @@
 		1239B7432C37046E0055031B /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				12589FE22C38924A0003027D /* HistoryPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -318,6 +324,7 @@
 			files = (
 				1239B7482C3704D00055031B /* HistoryBuilder.swift in Sources */,
 				12E8C5992C205EE6001575FE /* CustomButton.swift in Sources */,
+				12589FE32C38924A0003027D /* HistoryPresenter.swift in Sources */,
 				12E8C59C2C2060FC001575FE /* UIStackView + Extensions.swift in Sources */,
 				12474DE12C1AD634009F7134 /* AppDelegate.swift in Sources */,
 				127A6F432C319F0600245123 /* TranslateEntity.swift in Sources */,
@@ -331,6 +338,7 @@
 				12E8C5662C2053A1001575FE /* MainTabBarController.swift in Sources */,
 				127A6F412C315DFB00245123 /* NetworkService.swift in Sources */,
 				12E8C5A02C208EEC001575FE /* LanguagesListView.swift in Sources */,
+				12589FE12C3890430003027D /* HistoryInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,16 +9,25 @@ import UIKit
 
 protocol HistoryViewInput {
     var output: HistoryViewOutput? { get set }
+    func updateData(_ items: [String])
 }
 
 protocol HistoryViewOutput {
-    
+    func searchTextDidChange(_ searchText: String)
 }
 
 class HistoryView: UIViewController, HistoryViewInput {
     
     var output: HistoryViewOutput?
     private let identifier = "cell"
+    
+    private lazy var searchController: UISearchController = {
+        let controller = UISearchController(searchResultsController: nil)
+        controller.searchBar.placeholder = "Search"
+        controller.searchResultsUpdater = self
+        controller.obscuresBackgroundDuringPresentation = false
+        return controller
+    }()
     
     private lazy var historyTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -44,11 +53,24 @@ class HistoryView: UIViewController, HistoryViewInput {
     private func setupNavigationBar() {
         navigationItem.title = "History"
         navigationController?.navigationBar.barTintColor = .systemYellow
+        navigationItem.searchController = searchController
     }
     
     private func setDelegates() {
         historyTableView.dataSource = self
         historyTableView.delegate = self
+    }
+    
+    func updateData(_ items: [String]) {
+        historyTableView.reloadData()
+    }
+}
+
+//MARK: - UISearchResultsUpdating
+extension HistoryView: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let searchText = searchController.searchBar.text else { return }
+        output?.searchTextDidChange(searchText)
     }
 }
 
