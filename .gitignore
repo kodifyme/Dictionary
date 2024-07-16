@@ -84,5 +84,6 @@ fastlane/test_output
 
 iOSInjectionProject/
 .DS_Store
+Dictionary.xcodeproj/project.xcworkspace/xcuserdata/koddek.xcuserdatad/UserInterfaceState.xcuserstate
 
 ```
