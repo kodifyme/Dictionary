@@ -15,6 +15,7 @@ protocol HistoryViewInput {
 protocol HistoryViewOutput {
     func searchTextDidChange(_ searchText: String)
     func viewDidLoad()
+    func deleteAllItems()
 }
 
 class HistoryView: UIViewController, HistoryViewInput {
@@ -27,12 +28,13 @@ class HistoryView: UIViewController, HistoryViewInput {
         let controller = UISearchController(searchResultsController: nil)
         controller.searchBar.placeholder = "Search"
         controller.searchResultsUpdater = self
+        controller.isActive = true
         controller.obscuresBackgroundDuringPresentation = false
         return controller
     }()
     
     private lazy var historyTableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped)
+        let tableView = UITableView(frame: .zero, style: .insetGrouped)
         tableView.backgroundColor = .systemYellow
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: identifier)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -58,6 +60,8 @@ class HistoryView: UIViewController, HistoryViewInput {
         navigationItem.title = "History"
         navigationController?.navigationBar.barTintColor = .systemYellow
         navigationItem.searchController = searchController
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(trashButtonTapped))
     }
     
     private func setDelegates() {
@@ -68,6 +72,12 @@ class HistoryView: UIViewController, HistoryViewInput {
     func updateData(_ items: [TranslationEntity]) {
         self.items = items
         historyTableView.reloadData()
+    }
+    
+    @objc private func trashButtonTapped() {
+        AlertManager.shared.historyClear(from: self) {
+            self.output?.deleteAllItems()
+        }
     }
 }
 

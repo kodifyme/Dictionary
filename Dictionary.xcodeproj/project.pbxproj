@@ -21,6 +21,7 @@
 		1286BD562C467F9300B9193E /* Dictionary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1286BD542C467F9300B9193E /* Dictionary.xcdatamodeld */; };
 		1286BD582C46824B00B9193E /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1286BD572C46824B00B9193E /* CoreDataStack.swift */; };
 		1286BD5A2C46842A00B9193E /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1286BD592C46842A00B9193E /* CoreDataService.swift */; };
+		1286BD5D2C46DE6300B9193E /* AlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1286BD5C2C46DE6300B9193E /* AlertManager.swift */; };
 		12E8C5662C2053A1001575FE /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E8C5652C2053A1001575FE /* MainTabBarController.swift */; };
 		12E8C56B2C20543D001575FE /* TranslateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E8C56A2C20543D001575FE /* TranslateView.swift */; };
 		12E8C5782C20578C001575FE /* TranslatePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E8C5772C20578C001575FE /* TranslatePresenter.swift */; };
@@ -48,6 +49,7 @@
 		1286BD552C467F9300B9193E /* Dictionary.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Dictionary.xcdatamodel; sourceTree = "<group>"; };
 		1286BD572C46824B00B9193E /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		1286BD592C46842A00B9193E /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
+		1286BD5C2C46DE6300B9193E /* AlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertManager.swift; sourceTree = "<group>"; };
 		12AF2F9B2C32F611009760A2 /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		12E8C5652C2053A1001575FE /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		12E8C56A2C20543D001575FE /* TranslateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateView.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 			children = (
 				12AF2F9B2C32F611009760A2 /* TODO.md */,
 				12474DF52C1AD9A8009F7134 /* Application */,
+				1286BD5B2C46DE4D00B9193E /* Managers */,
 				12E8C5672C205402001575FE /* TranslateModule */,
 				1239B73F2C3704340055031B /* HistoryModule */,
 				127A6F452C31AD5500245123 /* Services */,
@@ -196,6 +199,14 @@
 				12E8C59F2C208EEC001575FE /* LanguagesListView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		1286BD5B2C46DE4D00B9193E /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				1286BD5C2C46DE6300B9193E /* AlertManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		12E8C5672C205402001575FE /* TranslateModule */ = {
@@ -336,6 +347,7 @@
 				12589FE32C38924A0003027D /* HistoryPresenter.swift in Sources */,
 				12E8C59C2C2060FC001575FE /* UIStackView + Extensions.swift in Sources */,
 				12474DE12C1AD634009F7134 /* AppDelegate.swift in Sources */,
+				1286BD5D2C46DE6300B9193E /* AlertManager.swift in Sources */,
 				127A6F432C319F0600245123 /* TranslateEntity.swift in Sources */,
 				126959002C2AFAAA00EC3A96 /* TranslateBuilder.swift in Sources */,
 				12E8C5782C20578C001575FE /* TranslatePresenter.swift in Sources */,

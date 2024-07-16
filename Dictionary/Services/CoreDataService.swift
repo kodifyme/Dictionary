@@ -44,4 +44,13 @@ class CoreDataService {
             return []
         }
     }
+    
+    func deleteAllTranslations() {
+        do {
+            try coreDataStack.context.execute(NSBatchDeleteRequest(fetchRequest: TranslationEntity.fetchRequest()))
+            try coreDataStack.context.save()
+        } catch {
+            print("Failed to delete translations: \(error.localizedDescription)")
+        }
+    }
 }

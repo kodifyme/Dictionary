@@ -37,4 +37,9 @@ extension HistoryPresenter: HistoryViewOutput {
     func viewDidLoad() {
         view.updateData(interactor.fetchTranslations())
     }
+    
+    func deleteAllItems() {
+        interactor.clearTranslations()
+        viewDidLoad()
+    }
 }
