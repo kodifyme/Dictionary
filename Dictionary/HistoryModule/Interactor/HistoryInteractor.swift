@@ -9,7 +9,7 @@ import UIKit
 
 protocol HistoryInteractorInput {
     var output: HistoryInteractorOutput? { get set }
-
+    func fetchTranslations() -> [TranslationEntity]
 }
 
 protocol HistoryInteractorOutput: AnyObject {
@@ -17,14 +17,12 @@ protocol HistoryInteractorOutput: AnyObject {
 }
 
 class HistoryInteractor: HistoryInteractorInput {
+    
     weak var output: HistoryInteractorOutput?
+    private let coreDataService = CoreDataService.shared
     
-    var allItems: [String] = ["Машина", "Machine", "Remote", "Удаленный"]
-    var filteredItems: [String] = []
-    
-    
+    func fetchTranslations() -> [TranslationEntity] {
+        return coreDataService.fetchTranslations()
+    }
 }
 
-extension HistoryInteractor {
-    
-}

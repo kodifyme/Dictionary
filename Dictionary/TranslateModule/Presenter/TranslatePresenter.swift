@@ -7,17 +7,6 @@
 
 import UIKit
 
-/*protocol TranslatePresenterInput {
- var output: TranslatePresenterOutput? { get set }
- }
- 
- protocol TranslatePresenterOutput: AnyObject {
- func didFetchTranslation(_ translation: String)
- func didFailToFetchTranslation(error: Error)
- }*/
-
-//weak var output: TranslatePresenterOutput?
-
 final class TranslatePresenter {
     
     private var view: TranslateViewInput
@@ -56,6 +45,7 @@ extension TranslatePresenter: TranslateViewOutput {
 
 //MARK: - LanguageSelectionDelegate
 extension TranslatePresenter: TranslateRouterOutput {
+    
     func didSelectLanguage(_ languageName: Language) {
         interactor.changeLanguageTo(languageName)
         if let currentText = view.getCurrentText() {

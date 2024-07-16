@@ -27,6 +27,7 @@ final class TranslateInteractor: TranslateInteractorInput {
     
     weak var output: TranslateInteractorOutput?
     private let networkService = NetworkService.shared
+    private let coreDataService = CoreDataService.shared
     
     var isSourceLanguage = true
     
@@ -44,6 +45,8 @@ extension TranslateInteractor {
         networkService.fetchTranslation(for: text, from: sourceLanguage.code, to: targetLanguage.code) { result in
             switch result {
             case .success(let translation):
+                self.coreDataService.saveTranslation(sourceText: text, translatedText: translation.text)
+                print("\(text) - \(translation.text)")
                 self.output?.didFetchTranslation(translation.text)
             case .failure(let error):
                 self.output?.didFailToFetchTranslation(error: error)

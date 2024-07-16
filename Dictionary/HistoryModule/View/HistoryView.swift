@@ -9,17 +9,19 @@ import UIKit
 
 protocol HistoryViewInput {
     var output: HistoryViewOutput? { get set }
-    func updateData(_ items: [String])
+    func updateData(_ items: [TranslationEntity])
 }
 
 protocol HistoryViewOutput {
     func searchTextDidChange(_ searchText: String)
+    func viewDidLoad()
 }
 
 class HistoryView: UIViewController, HistoryViewInput {
     
     var output: HistoryViewOutput?
     private let identifier = "cell"
+    private var items: [TranslationEntity] = []
     
     private lazy var searchController: UISearchController = {
         let controller = UISearchController(searchResultsController: nil)
@@ -44,6 +46,8 @@ class HistoryView: UIViewController, HistoryViewInput {
         setupNavigationBar()
         setDelegates()
         setupConstraints()
+        
+        output?.viewDidLoad()
     }
     
     private func setupView() {
@@ -61,7 +65,8 @@ class HistoryView: UIViewController, HistoryViewInput {
         historyTableView.delegate = self
     }
     
-    func updateData(_ items: [String]) {
+    func updateData(_ items: [TranslationEntity]) {
+        self.items = items
         historyTableView.reloadData()
     }
 }
@@ -77,12 +82,13 @@ extension HistoryView: UISearchResultsUpdating {
 //MARK: - UITableViewDataSource
 extension HistoryView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        10
+        items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath)
-        cell.textLabel?.text = "wfw"
+        let translation = items[indexPath.row]
+        cell.textLabel?.text = "\(translation.sourceText ?? "") - \(translation.translatedText ?? "")"
         return cell
     }
 }

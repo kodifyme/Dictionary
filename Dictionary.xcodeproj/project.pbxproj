@@ -18,6 +18,9 @@
 		126959002C2AFAAA00EC3A96 /* TranslateBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 126958FF2C2AFAAA00EC3A96 /* TranslateBuilder.swift */; };
 		127A6F412C315DFB00245123 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127A6F402C315DFB00245123 /* NetworkService.swift */; };
 		127A6F432C319F0600245123 /* TranslateEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 127A6F422C319F0600245123 /* TranslateEntity.swift */; };
+		1286BD562C467F9300B9193E /* Dictionary.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1286BD542C467F9300B9193E /* Dictionary.xcdatamodeld */; };
+		1286BD582C46824B00B9193E /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1286BD572C46824B00B9193E /* CoreDataStack.swift */; };
+		1286BD5A2C46842A00B9193E /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1286BD592C46842A00B9193E /* CoreDataService.swift */; };
 		12E8C5662C2053A1001575FE /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E8C5652C2053A1001575FE /* MainTabBarController.swift */; };
 		12E8C56B2C20543D001575FE /* TranslateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E8C56A2C20543D001575FE /* TranslateView.swift */; };
 		12E8C5782C20578C001575FE /* TranslatePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12E8C5772C20578C001575FE /* TranslatePresenter.swift */; };
@@ -42,6 +45,9 @@
 		126958FF2C2AFAAA00EC3A96 /* TranslateBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateBuilder.swift; sourceTree = "<group>"; };
 		127A6F402C315DFB00245123 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		127A6F422C319F0600245123 /* TranslateEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateEntity.swift; sourceTree = "<group>"; };
+		1286BD552C467F9300B9193E /* Dictionary.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Dictionary.xcdatamodel; sourceTree = "<group>"; };
+		1286BD572C46824B00B9193E /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		1286BD592C46842A00B9193E /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 		12AF2F9B2C32F611009760A2 /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		12E8C5652C2053A1001575FE /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		12E8C56A2C20543D001575FE /* TranslateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateView.swift; sourceTree = "<group>"; };
@@ -68,7 +74,6 @@
 			isa = PBXGroup;
 			children = (
 				1239B7452C37047C0055031B /* Router */,
-				1239B7462C3704920055031B /* Entity */,
 				1239B7432C37046E0055031B /* Presenter */,
 				1239B7422C3704640055031B /* Interactor */,
 				1239B7412C37045F0055031B /* View */,
@@ -106,13 +111,6 @@
 			children = (
 			);
 			path = Router;
-			sourceTree = "<group>";
-		};
-		1239B7462C3704920055031B /* Entity */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Entity;
 			sourceTree = "<group>";
 		};
 		12474DD42C1AD634009F7134 = {
@@ -168,7 +166,7 @@
 		126959012C2D31C600EC3A96 /* SelectLanguage */ = {
 			isa = PBXGroup;
 			children = (
-				12E8C59F2C208EEC001575FE /* LanguagesListView.swift */,
+				1286BD4A2C46733E00B9193E /* View */,
 			);
 			path = SelectLanguage;
 			sourceTree = "<group>";
@@ -184,9 +182,20 @@
 		127A6F452C31AD5500245123 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				1286BD542C467F9300B9193E /* Dictionary.xcdatamodeld */,
 				127A6F402C315DFB00245123 /* NetworkService.swift */,
+				1286BD572C46824B00B9193E /* CoreDataStack.swift */,
+				1286BD592C46842A00B9193E /* CoreDataService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		1286BD4A2C46733E00B9193E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				12E8C59F2C208EEC001575FE /* LanguagesListView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		12E8C5672C205402001575FE /* TranslateModule */ = {
@@ -197,6 +206,7 @@
 				12E8C5732C205724001575FE /* Presenter */,
 				12E8C5742C205731001575FE /* Interactor */,
 				12E8C5702C20546C001575FE /* View */,
+				126959012C2D31C600EC3A96 /* SelectLanguage */,
 				126958FF2C2AFAAA00EC3A96 /* TranslateBuilder.swift */,
 			);
 			path = TranslateModule;
@@ -206,7 +216,6 @@
 			isa = PBXGroup;
 			children = (
 				12E8C56A2C20543D001575FE /* TranslateView.swift */,
-				126959012C2D31C600EC3A96 /* SelectLanguage */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -330,8 +339,11 @@
 				127A6F432C319F0600245123 /* TranslateEntity.swift in Sources */,
 				126959002C2AFAAA00EC3A96 /* TranslateBuilder.swift in Sources */,
 				12E8C5782C20578C001575FE /* TranslatePresenter.swift in Sources */,
+				1286BD582C46824B00B9193E /* CoreDataStack.swift in Sources */,
 				1239B74A2C3705120055031B /* HistoryView.swift in Sources */,
+				1286BD562C467F9300B9193E /* Dictionary.xcdatamodeld in Sources */,
 				12E8C56B2C20543D001575FE /* TranslateView.swift in Sources */,
+				1286BD5A2C46842A00B9193E /* CoreDataService.swift in Sources */,
 				12474DE32C1AD634009F7134 /* SceneDelegate.swift in Sources */,
 				12E8C57A2C2057A1001575FE /* TranslateInteractor.swift in Sources */,
 				12E8C57C2C2057A9001575FE /* TranslateRouter.swift in Sources */,
@@ -559,6 +571,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1286BD542C467F9300B9193E /* Dictionary.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1286BD552C467F9300B9193E /* Dictionary.xcdatamodel */,
+			);
+			currentVersion = 1286BD552C467F9300B9193E /* Dictionary.xcdatamodel */;
+			path = Dictionary.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 12474DD52C1AD634009F7134 /* Project object */;
 }
